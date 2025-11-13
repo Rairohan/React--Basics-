@@ -10,7 +10,7 @@ function App(){
 }
 function LoginForm(){
     return (
-    <div>
+             <div>
                  <input placeholder="email" max="30"/>
                  <input placeholder="password" max="30"/>
             </div>

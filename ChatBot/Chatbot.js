@@ -38,13 +38,33 @@ function ChatMessage({message,sender}){
 //conponent reusability message inside Chatmessage is a prop name which is stored in message 
 //variable which is returned 
 function App(){
+    const ChatMessages = [
+        {
+        message:"Hello chatbot", sender:"user"
+     },
+     {
+        message:"Hello! How are you ?" ,sender:"robot"
+     },
+     {
+        message:"Can you get me todays date?", sender:"user" 
+     },
+     {
+        message:"Today is November 12" ,sender:"robot"
+     }
+     ]
+    const ChatMessageComponents= ChatMessages.map((ChatMsg)=>{
+       return( 
+        <ChatMessage
+            message={ChatMsg.message}
+            sender={ChatMsg.sender}
+        />
+        )
+     })
+
     return(
     <>
         <ChatInput />
-        <ChatMessage message="Hello chatbot" sender="user"/>
-        <ChatMessage message="Hello! How are you ?" sender="robot"/>
-        <ChatMessage message="Can you get me todays date?" sender="user"/>
-        <ChatMessage message="Today is November 12" sender="robot"/>
+        {ChatMessageComponents}
     </>)
 }
 const container = document.getElementById("Container")
