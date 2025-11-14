@@ -35,36 +35,44 @@ function ChatMessage({message,sender}){
         </div>
     )
 }
-//conponent reusability message inside Chatmessage is a prop name which is stored in message 
-//variable which is returned 
-function App(){
-    const ChatMessages = [
+function Chatmessages(){
+     const ChatMessages = [
         {
-        message:"Hello chatbot", sender:"user"
+        message:"Hello chatbot", sender:"user",id:'id1'
      },
      {
-        message:"Hello! How are you ?" ,sender:"robot"
+        message:"Hello! How are you ?" ,sender:"robot",id:'id2'
      },
      {
-        message:"Can you get me todays date?", sender:"user" 
+        message:"Can you get me todays date?", sender:"user" ,id:'id3'
      },
      {
-        message:"Today is November 12" ,sender:"robot"
+        message:"Today is November 12" ,sender:"robot",id:"id4"
      }
      ]
-    const ChatMessageComponents= ChatMessages.map((ChatMsg)=>{
+    return(
+        <>
+      {ChatMessages.map((ChatMsg)=>{
        return( 
         <ChatMessage
             message={ChatMsg.message}
             sender={ChatMsg.sender}
+            key={ChatMsg.id}
         />
         )
-     })
-
+     })}
+      </>
+    )
+}
+//conponent reusability message inside Chatmessage is a prop name which is stored in message 
+//variable which is returned 
+//key is a prop which uniquely define element
+function App(){
+     
     return(
     <>
         <ChatInput />
-        {ChatMessageComponents}
+        <Chatmessages/>
     </>)
 }
 const container = document.getElementById("Container")
