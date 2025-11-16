@@ -1,6 +1,7 @@
 //<input /> is a self closing tag
 //<>,</> are fragments which helps to group elements without nesting of div  
 //component uses pascal case(Every starting letter is capital letter)
+//in react we need to assign key to each element of array
 function ChatInput(){  
     return (
         <>
@@ -36,7 +37,7 @@ function ChatMessage({message,sender}){
     )
 }
 function Chatmessages(){
-     const ChatMessages = [
+    const array= React.useState([
         {
         message:"Hello chatbot", sender:"user",id:'id1'
      },
@@ -49,10 +50,21 @@ function Chatmessages(){
      {
         message:"Today is November 12" ,sender:"robot",id:"id4"
      }
-     ]
+     ])
+     const chatMessages = array[0]
+     const setChatMessages = array[1]
+     function sendMessage(){
+         setChatMessages([
+            ...chatMessages,
+            {
+              message:"test",sender:"user",id:crypto.randomUUID()
+            }
+         ])
+     }
     return(
         <>
-      {ChatMessages.map((ChatMsg)=>{
+        <button onClick={sendMessage }>Send Message</button>
+      {chatMessages.map((ChatMsg)=>{
        return( 
         <ChatMessage
             message={ChatMsg.message}
