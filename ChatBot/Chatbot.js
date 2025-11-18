@@ -2,18 +2,52 @@
 //<>,</> are fragments which helps to group elements without nesting of div  
 //component uses pascal case(Every starting letter is capital letter)
 //in react we need to assign key to each element of array
-function ChatInput(){  
+function ChatInput({ chatMessages, setChatMessages }) { 
+    const [inputText, setInputText] = React.useState('')
+    // inputText stores what the user types
+    //setInputText updates the value
+    function saveInputText(event){
+        setInputText(event.target.value)
+    }
+
+    function sendMessage(){
+        const newChatMessages =
+        [
+            ...chatMessages,
+            {
+                message: inputText,
+                sender: "user",
+                id: crypto.randomUUID()
+            }
+        ]
+        setChatMessages(newChatMessages)
+
+         const response = Chatbot.getResponse(inputText)
+            setChatMessages([
+            ...newChatMessages,
+            {
+                message: response,
+                sender: "robot",
+                id: crypto.randomUUID()
+            }
+        ])
+        setInputText(''); // Clear the input after sending
+    }
+
     return (
         <>
             <input 
                 placeholder="Send Message"
                 size="25" 
+                value={inputText}  // Makes the input a "controlled component"
+                onChange={saveInputText}
             />
-            <button> Send </button>
+            <button onClick={sendMessage}> Send </button>
         </>
     )
 }
-function ChatMessage({message,sender}){
+
+function ChatMessage({message, sender}){
     // const message = props.message
     // const sender = props.sender
     // const {message,sender} = props
@@ -28,64 +62,65 @@ function ChatMessage({message,sender}){
     } */
     //&& a guard op where if value 1 is true, value 2 is result
     return(
-        < div>
-            {sender ==="robot" && <img src="robot.png" width="50"/> }
+        <div>
+            {sender === "robot" && <img src="robot.png" width="50" alt="robot"/> }
             {message}
-            {sender ==="user" && <img src="user.png" width="50"/> }
-            
+            {sender === "user" && <img src="user.png" width="50" alt="user"/> }
         </div>
     )
 }
-function Chatmessages(){
-    const array= React.useState([
-        {
-        message:"Hello chatbot", sender:"user",id:'id1'
-     },
-     {
-        message:"Hello! How are you ?" ,sender:"robot",id:'id2'
-     },
-     {
-        message:"Can you get me todays date?", sender:"user" ,id:'id3'
-     },
-     {
-        message:"Today is November 12" ,sender:"robot",id:"id4"
-     }
-     ])
-     const chatMessages = array[0]
-     const setChatMessages = array[1]
-     function sendMessage(){
-         setChatMessages([
-            ...chatMessages,
-            {
-              message:"test",sender:"user",id:crypto.randomUUID()
-            }
-         ])
-     }
-    return(
+
+function Chatmessages({ chatMessages }){
+    // Removed local useState here — chatMessages now comes from parent (App)
+    // This component should only display messages, not manage state
+
+    return( 
         <>
-        <button onClick={sendMessage }>Send Message</button>
-      {chatMessages.map((ChatMsg)=>{
-       return( 
-        <ChatMessage
-            message={ChatMsg.message}
-            sender={ChatMsg.sender}
-            key={ChatMsg.id}
-        />
-        )
-     })}
-      </>
+            {chatMessages.map((ChatMsg) => {
+                return( 
+                    <ChatMessage
+                        message={ChatMsg.message}
+                        sender={ChatMsg.sender}
+                        key={ChatMsg.id}
+                    />
+                )
+            })}
+        </>
     )
 }
+
 //conponent reusability message inside Chatmessage is a prop name which is stored in message 
 //variable which is returned 
 //key is a prop which uniquely define element
 function App(){
-     
+    //  State is now correctly defined in App — the parent component
+    const [chatMessages, setChatMessages] = React.useState([
+        {
+            message:"Hello chatbot", sender:"user", id:'id1'
+        },
+        {
+            message:"Hello! How are you ?", sender:"robot", id:'id2'
+        },
+        {
+            message:"Can you get me todays date?", sender:"user", id:'id3'
+        },
+        {
+            message:"Today is November 12", sender:"robot", id:"id4"
+        }
+    ]);
+
     return(
-    <>
-        <ChatInput />
-        <Chatmessages/>
-    </>)
+        <>
+            <ChatInput
+                chatMessages={chatMessages}
+                setChatMessages={setChatMessages}
+            />
+            <Chatmessages
+                chatMessages={chatMessages}
+            />
+        </>
+    )
 }
+
 const container = document.getElementById("Container")
-ReactDOM.createRoot(container).render(<App/>)
+ReactDOM.createRoot(container).render(<App/>) 
