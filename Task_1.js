@@ -14,9 +14,6 @@
 //         <Hello name="rohan" age="21"/>
 //     )
 // }
-// const div = document.getElementById("btn")
-// ReactDOM.createRoot(div).render(<App/>)
-
 //----------------------------------------------Task ----------------------------------------------
 // function Message({message,author}){
 //     return(
@@ -31,8 +28,6 @@
 //         <Message message="Hello" author="Rohan"/>
 //     )
 // }
-// const div = document.getElementById("btn")
-// ReactDOM.createRoot(div).render(<App/>)
 //----------------------------------------------Task ----------------------------------------------
 // function Button({label}){
 //     return(
@@ -44,8 +39,6 @@
 //         <Button label="click me"/>
 //     )
 // }
-// const div = document.getElementById("btn")
-// ReactDOM.createRoot(div).render(<App/>)
 //----------------------------------------------Task ----------------------------------------------
 // function Product({title,price}){
 //     return(
@@ -63,8 +56,6 @@
 //         </div>
 //     )
 // }
-// const div = document.getElementById("btn")
-// ReactDOM.createRoot(div).render(<App/>)
 //----------------------------------------------Task ----------------------------------------------
 // function UserProfile({user}){
 //     return(
@@ -81,8 +72,6 @@
 //         <UserProfile user={user}/>
 //     )
 // }
-// const div = document.getElementById("btn")
-// ReactDOM.createRoot(div).render(<App/>)
 //----------------------------------------------Task ----------------------------------------------
 // function TaskList({ tasks }) {
 //   return (
@@ -105,8 +94,6 @@
 //     <TaskList tasks={tasks}/>
 // )
 // }
-// const div = document.getElementById("btn")
-// ReactDOM.createRoot(div).render(<App/>)
 //----------------------------------------------Task ----------------------------------------------
 // function App(){
 //   const[num,setnum]=React.useState(10)
@@ -129,9 +116,6 @@
 //     </div>
 //   )
 // }
-
-// const div = document.getElementById("btn")
-// ReactDOM.createRoot(div).render(<App/>)
 //----------------------------------------------Task ----------------------------------------------
 // function App(){
 //     const [num,setnum]= React.useState(0)
@@ -149,8 +133,6 @@
 //         </div>
 //     )
 // }
-// const div = document.getElementById("btn")
-// ReactDOM.createRoot(div).render(<App/>)
 //----------------------------------------------Task ----------------------------------------------
 // function App() {
 //   const [show, setShow] = React.useState(false);
@@ -169,7 +151,78 @@
 //     </div>
 //   );
 // }
-// const div = document.getElementById("btn")
-// ReactDOM.createRoot(div).render(<App/>)
 //----------------------------------------------Task ----------------------------------------------
+// function App(){
+//     const[text,settext]= React.useState("")
+//     function handlechange(event){
+//         settext(event.target.value)
+//     }
+//     return(
+//         <div>
+//             <input type="text" placeholder="enter something" onChange={handlechange}/>
+//             <p>You have entered {text}</p>
+//         </div>
+//     )
+// }
+//----------------------------------------------Task ----------------------------------------------
+// function App(){
+//     const[text,setText]=React.useState("")
+//     const maxchar=100
+//     function handlechange(event){
+//         setText(event.target.value)
+//     }
+//     return(
+//         <div>
+//             <input
+//                 type="text"
+//                 placeholder="enter text"
+//                 onChange={handlechange}
+//                 maxLength={maxchar}
+//             />
+//             <p>
+//                 you have entered {text.length} number of characters
+//                 you have {maxchar-text.length} characters remaining
+//             </p>
+//         </div>
+//     )
+// }
+//----------------------------------------------Task ----------------------------------------------
+// function App() {
+//   const [text, setText] = React.useState("");
+//   const [list, setList] = React.useState([]);
 
+//   function add() {
+//     if (text.trim() === "") return;
+//     setList([...list, text]);
+//     setText("");
+//   }
+
+//   function remove(index) {
+//     setList(list.filter((_, i) => i !== index));
+//   }
+
+//   return (
+//     <div>
+//       <input 
+//         type="text" 
+//         placeholder="enter todo"
+//         value={text}
+//         onChange={(e) => setText(e.target.value)}
+//       />
+//       <button onClick={add}>add</button>
+
+//       <ul>
+//         {list.map((item, index) => (
+//           <li key={index}>
+//             {item}
+//             <button onClick={() => remove(index)}>delete</button>
+//           </li>
+//         ))}
+//       </ul>
+//     </div>
+//   );
+// }
+// ----------------------------------------------Task ----------------------------------------------
+
+const div = document.getElementById("btn")
+ReactDOM.createRoot(div).render(<App/>)

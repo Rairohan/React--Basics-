@@ -35,15 +35,16 @@ function ChatInput({ chatMessages, setChatMessages }) {
     }
 
     return (
-        <>
+        <div className="input-container">
             <input 
                 placeholder="Send Message"
                 size="25" 
                 value={inputText}  // Makes the input a "controlled component"
                 onChange={saveInputText}
+                className="input-text"
             />
-            <button onClick={sendMessage}> Send </button>
-        </>
+            <button onClick={sendMessage} className="send-button"> Send </button>
+        </div>
     )
 }
 
