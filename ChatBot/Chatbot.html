@@ -2,6 +2,9 @@
 <html lang="en">
 <head>
     <style>
+        body{
+            margin:0;
+        }
         .send-button{
             background-color: rgb(12, 138, 29);
             border-radius: 10px;
@@ -11,6 +14,7 @@
             border: none;
             font-size: 14px;
             cursor: pointer;
+            margin-bottom: 10px;
         }
         .input-text{
             padding: 10px 20px;
@@ -18,23 +22,60 @@
             border-width: 1px;
             font-size: 14px;
             flex-grow: 1;
+            margin-bottom: 10px;
         }
         .input-container{
+            display: flex; 
+            margin-bottom: 60px; 
+        }
+        .App-container{
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 100vh;
             display: flex;
+            flex-direction: column;
+        }
+        .chat-msg-user{
+            display: flex;
+            justify-content: end;
+            align-items: start;
+        }
+        .chat-msg-robot{
+            display: flex;
+            align-items: start;
+        }
+        .msg{
+            background-color: rgb(238, 238, 238);
+            font-family: Arial, Helvetica, sans-serif;
+            padding: 15px 10px;
+            border-radius: 15px;
+            margin: 0px 10px 10px 10px;
+            max-width: 300px;
+        }
+        .profile{
+            width: 45px;
+
+        }
+        .chat-msg-container{
+            flex-grow:1;
+            margin-top: 20px;
+            overflow: scroll;
+            scrollbar-width: none;
             
         }
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ChatBot</title>
-    <div id="Container"></div>
+    
     <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
     <script src="https://unpkg.com/supersimpledev/chatbot.js"></script>
 </head>
 <body>
-    
+    <div id="Container"></div>
     <script type="text/babel" data-presets="env,react" src="Chatbot.js"></script>
 </body>
 </html>

@@ -223,6 +223,23 @@
 //   );
 // }
 // ----------------------------------------------Task ----------------------------------------------
-
+function App(){
+    const[count,setcount] = React.useState(0)
+    React.useEffect(()=>{
+        console.log("count has been changed to ",count)
+    },[count])
+    function Increase(){
+        setcount(count+1)
+    }
+    React.useEffect(()=>{
+        document.title=`count ${count}`
+    },[count])
+    return(
+        <div>
+            <p>The count is {count}</p> 
+            <button onClick={Increase}>Increase</button>       
+        </div>
+    )
+}
 const div = document.getElementById("btn")
 ReactDOM.createRoot(div).render(<App/>)

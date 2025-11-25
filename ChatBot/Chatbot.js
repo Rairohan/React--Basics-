@@ -1,6 +1,6 @@
 //<input /> is a self closing tag
 //<>,</> are fragments which helps to group elements without nesting of div  
-//component uses pascal case(Every starting letter is capital letter)
+//component uses pascal case(Every starting letter is capital letter"
 //in react we need to assign key to each element of array
 function ChatInput({ chatMessages, setChatMessages }) { 
     const [inputText, setInputText] = React.useState('')
@@ -63,10 +63,14 @@ function ChatMessage({message, sender}){
     } */
     //&& a guard op where if value 1 is true, value 2 is result
     return(
-        <div>
-            {sender === "robot" && <img src="robot.png" width="50" alt="robot"/> }
-            {message}
-            {sender === "user" && <img src="user.png" width="50" alt="user"/> }
+        <div className={sender==="user"
+            ?"chat-msg-user"
+            :"chat-msg-robot "}>
+            {sender === "robot" && <img src="robot.png" className="profile" /> }
+            <div className="msg"> 
+                {message}
+            </div>
+            {sender === "user" && <img src="user.png" className="profile"/> }
         </div>
     )
 }
@@ -74,9 +78,16 @@ function ChatMessage({message, sender}){
 function Chatmessages({ chatMessages }){
     // Removed local useState here — chatMessages now comes from parent (App)
     // This component should only display messages, not manage state
+    const chatref=React.useRef(null)
 
+    React.useEffect(()=>{
+        const containerElem=chatref.current
+        if (containerElem){
+            containerElem.scrollTop = containerElem.scrollHeight
+        }
+    }, [chatMessages])
     return( 
-        <>
+        <div className="chat-msg-container" ref={chatref}>
             {chatMessages.map((ChatMsg) => {
                 return( 
                     <ChatMessage
@@ -86,7 +97,7 @@ function Chatmessages({ chatMessages }){
                     />
                 )
             })}
-        </>
+        </div>
     )
 }
 
@@ -111,15 +122,16 @@ function App(){
     ]);
 
     return(
-        <>
-            <ChatInput
-                chatMessages={chatMessages}
-                setChatMessages={setChatMessages}
-            />
+        <div className="App-container">
+          
             <Chatmessages
                 chatMessages={chatMessages}
             />
-        </>
+              <ChatInput
+                chatMessages={chatMessages}
+                setChatMessages={setChatMessages}
+            />
+        </div>
     )
 }
 
