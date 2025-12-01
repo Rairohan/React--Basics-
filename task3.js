@@ -51,7 +51,7 @@
 //         </div>
 //     )
 // }
-// ----------------------------------------------Task 3 ----------------------------------------------
+// ----------------------------------------------Task 4 ----------------------------------------------
 // function App() {
 //   const [input, setInput] = React.useState("");
 //   const [todos, setTodos] = React.useState([]);
@@ -92,7 +92,7 @@
 //     </div>
 //   );
 // }
-// ----------------------------------------------Task 3 ----------------------------------------------
+// ----------------------------------------------Task 5 ----------------------------------------------
 // function App(){
 //     const[count,setcount]=React.useState(0)
 //     function increment(){
@@ -107,31 +107,36 @@
 //         </div>
 //     )
 // }
-function App() {
-  const inputRef = React.useRef(null);   // for focusing the input
-  const valueRef = React.useRef("");     // store input value without re-render
+// ----------------------------------------------Task 6 ----------------------------------------------
+// function App() {
+//   const inputRef = React.useRef(null)
+//   const valueRef = React.useRef("")
 
-  React.useEffect(() => {
-    inputRef.current.focus();            // focus on page load
-  }, []);
+//   React.useRef(()=>{
+//     inputRef.current.focus()
+//   },[])
+//   function showval(){
+//     alert("current value:"+valueRef.current)
+//   }
+//   return(
+//     <div>
+//       <h2>useRef</h2>
+//       <input
+//         ref={inputRef}
+//         placeholder="enter"
+//         onChange={(e)=>{
+//           (valueRef.current =e.target.value)
+//         }}
+//       />
+//       <button onClick={showval}>CLick</button>
+//     </div>
+//   )
 
-  function showValue() {
-    alert("Current value: " + valueRef.current);
-  }
 
-  return (
-    <div>
-      <h2>useRef Practice</h2>
-
-      <input
-        ref={inputRef}                           // auto-focus target
-        onChange={(e) => (valueRef.current = e.target.value)}  // store value
-        placeholder="Type here"
-      />
-
-      <button onClick={showValue}>Show Value</button>
-    </div>
-  );
+// }
+// ----------------------------------------------Task 7 ----------------------------------------------
+function App(){
+  input
 }
 const app = document.getElementById("here");
 ReactDOM.createRoot(app).render(<App />);
